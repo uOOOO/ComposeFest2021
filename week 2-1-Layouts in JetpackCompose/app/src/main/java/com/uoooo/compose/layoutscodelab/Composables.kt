@@ -22,6 +22,12 @@ import coil.compose.rememberImagePainter
 import com.uoooo.compose.layoutscodelab.ui.theme.LayoutsCodelabTheme
 import kotlinx.coroutines.launch
 
+val topics = listOf(
+    "Arts & Crafts", "Beauty", "Books", "Business", "Comics", "Culinary",
+    "Design", "Fashion", "Film", "History", "Maths", "Music", "People", "Philosophy",
+    "Religion", "Social sciences", "Technology", "TV", "Writing"
+)
+
 @Composable
 fun SimpleList() {
     val scrollState = rememberScrollState()
@@ -33,6 +39,14 @@ fun SimpleList() {
     }
 }
 
+@Preview
+@Composable
+fun SimpleListPreview() {
+    LayoutsCodelabTheme {
+        SimpleList()
+    }
+}
+
 @Composable
 fun LazyList() {
     val scrollState = rememberLazyListState()
@@ -41,6 +55,14 @@ fun LazyList() {
         items(100) {
             Text("Item #$it")
         }
+    }
+}
+
+@Preview
+@Composable
+fun LazyListPreview() {
+    LayoutsCodelabTheme {
+        LazyList()
     }
 }
 
@@ -67,6 +89,14 @@ fun ImageList() {
         items(100) {
             ImageListItem(it)
         }
+    }
+}
+
+@Preview
+@Composable
+fun ImageListPreview() {
+    LayoutsCodelabTheme {
+        ImageList()
     }
 }
 
@@ -103,6 +133,13 @@ fun ScrollingList() {
     }
 }
 
+@Preview
+@Composable
+fun ScrollingListPreview() {
+    LayoutsCodelabTheme {
+        ScrollingList()
+    }
+}
 
 fun Modifier.firstBaselineToTop(
     firstBaselineToTop: Dp
@@ -156,6 +193,18 @@ fun MyOwnColumn(
             placeables.forEach { placeable ->
                 placeable.placeRelative(x = 0, y = yPosition)
                 yPosition += placeable.height
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun MyOwnColumnPreview() {
+    LayoutsCodelabTheme {
+        MyOwnColumn {
+            for (topic in topics) {
+                Chip(modifier = Modifier.padding(8.dp), text = topic)
             }
         }
     }
@@ -219,6 +268,18 @@ fun StaggeredGrid(
                     y = rowY[row]
                 )
                 rowX[row] += placeable.width
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun StaggeredGridPreview() {
+    LayoutsCodelabTheme {
+        StaggeredGrid {
+            for (topic in topics) {
+                Chip(modifier = Modifier.padding(8.dp), text = topic)
             }
         }
     }
@@ -384,7 +445,7 @@ private fun decoupledConstraints(margin: Dp): ConstraintSet {
         val text = createRefFor("text")
 
         constrain(button) {
-            top.linkTo(parent.top, margin= margin)
+            top.linkTo(parent.top, margin = margin)
         }
         constrain(text) {
             top.linkTo(button.bottom, margin)
@@ -403,7 +464,11 @@ fun TwoTexts(modifier: Modifier = Modifier, text1: String, text2: String) {
             text = text1
         )
 
-        Divider(color = Color.Black, modifier = Modifier.fillMaxHeight().width(1.dp))
+        Divider(
+            color = Color.Black, modifier = Modifier
+                .fillMaxHeight()
+                .width(1.dp)
+        )
         Text(
             modifier = Modifier
                 .weight(1f)
@@ -435,7 +500,11 @@ fun TwoTexts2(modifier: Modifier = Modifier, text1: String, text2: String) {
             text = text1
         )
 
-        Divider(color = Color.Black, modifier = Modifier.fillMaxHeight().width(1.dp))
+        Divider(
+            color = Color.Black, modifier = Modifier
+                .fillMaxHeight()
+                .width(1.dp)
+        )
         Text(
             modifier = Modifier
                 .weight(1f)

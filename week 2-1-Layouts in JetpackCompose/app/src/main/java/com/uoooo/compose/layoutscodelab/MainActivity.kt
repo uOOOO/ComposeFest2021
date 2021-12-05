@@ -30,12 +30,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-val topics = listOf(
-    "Arts & Crafts", "Beauty", "Books", "Business", "Comics", "Culinary",
-    "Design", "Fashion", "Film", "History", "Maths", "Music", "People", "Philosophy",
-    "Religion", "Social sciences", "Technology", "TV", "Writing"
-)
-
 @Composable
 fun LayoutsCodelab() {
     Scaffold(
