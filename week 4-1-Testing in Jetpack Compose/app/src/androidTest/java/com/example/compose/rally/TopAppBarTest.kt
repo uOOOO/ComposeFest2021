@@ -67,4 +67,30 @@ class TopAppBarTest {
             )
             .assertExists()
     }
+
+    @Test
+    fun rallyTopAppBarTest_clickedAccountsTab() {
+        composeTestRule.setContent {
+            RallyApp()
+        }
+
+        composeTestRule
+            .onNodeWithContentDescription(RallyScreen.Accounts.name)
+            .assertHasClickAction()
+            .performClick()
+
+        composeTestRule
+            .onRoot(useUnmergedTree = true)
+            .printToLog("currentLabelExists")
+
+        composeTestRule
+            .onNode(
+                hasText(RallyScreen.Accounts.name.uppercase()) and
+                        hasParent(
+                            hasContentDescription(RallyScreen.Accounts.name)
+                        ),
+                useUnmergedTree = true
+            )
+            .assertExists()
+    }
 }
